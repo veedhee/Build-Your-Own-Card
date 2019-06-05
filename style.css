@@ -1,0 +1,153 @@
+/*#f7567c*/
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: whitesmoke;
+    box-sizing: border-box;
+}
+
+#capture{
+    height: 580px;
+    width: 420px;
+    margin: auto;
+    padding-top: 3px !important;
+}
+
+.main-card{
+    height: 530px;
+    width: 380px;
+    /*background-color: #04052e;*/
+    /*background-image: linear-gradient(to bottom right, #0e7c7b, #2caca9, #0e7c7b);*/
+    background-image: linear-gradient(to bottom right, #003347, #015f74, #003347);
+    margin: 2em auto;
+    border-radius: 50px;
+    position: relative;
+    border-bottom: 10px solid #ffde3a;
+    border-left: 10px solid #ffde3a;
+}
+
+/* .main-card::before{
+    content: "";
+    background: #e9d985;
+    width: 15px;
+    top: -40px;
+    left: 30px;
+    height: 180px;
+    position: absolute;
+    transform: rotate(45deg);   
+    display: inline-block;
+} */
+
+.card-content{
+    height: 90%;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    
+}
+
+#card-img{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background: #4547b3;
+    margin: auto;
+    background-image: url("https://66.media.tumblr.com/c529168eb826b2312f4e72c7fc24f6fd/tumblr_p7tdizv9wO1wvribzo2_250.jpg");
+    background-size: 100% 100%;
+}
+
+#card-img::after{
+    height: 103%;
+    width: 103%;
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    border-right: 5px solid #ffde3a;
+    border-bottom: 5px solid #ffde3a;
+}
+
+#card-name{
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-top: 2em;
+}
+
+#card-designation{
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+#card-bio{
+    margin-top: 2em;
+    font-size: 1rem;
+}
+
+span{
+    color: yellow;
+}
+
+#card-website{
+    margin-top: 2em;
+    padding: 5px 10px;   
+    background: #ffde3a;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 200;
+    border-radius: 10px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.card-logos i{
+    margin-top: 1em;
+    font-size: 2rem;
+}
+
+.card-logos{
+    font-size: 1rem;
+}
+
+.card-logos i{
+    color: #ffde3a;
+}
+
+.card-logos > a{
+    padding-right: 10px;
+    color: #ffde3a;
+}
+
+.buttons{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    border-radius: 7px;
+    display: inline-block;
+    background: #04052e;
+    color: white;
+    text-align: left;
+}
+
+.btn{
+    background: #4547b3;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+

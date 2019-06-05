@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Build your Own Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script type = "text/javascript" src = "html2canvas.min.js" ></script>
+  <script type="text/javascript">
+    function saveEdits() {
+    //get the editable element
+    var editElemName = document.getElementById("card-name");
+    var editElemDesig = document.getElementById("card-designation");
+    var editElemBio = document.getElementById("card-bio");
+    
+    var userVersionName = editElemName.innerHTML;
+    var userVersionDesig = editElemDesig.innerHTML;
+    var userVersionBio = editElemBio.innerHTML;
+
+    var userVersionWeb = document.getElementById("web").value;
+    var userVersionGit = document.getElementById("git").value;
+    var userVersionTwit = document.getElementById("twit").value;
+    var userVersionImg = document.getElementById("img").value;
+    
+    //save the content to local storage
+    sessionStorage.userEditsName = userVersionName;
+    sessionStorage.userEditsDesig = userVersionDesig;
+    sessionStorage.userEditsBio = userVersionBio;
+    
+    sessionStorage.userEditsWeb = userVersionWeb;
+    sessionStorage.userEditsGit = userVersionGit;
+    sessionStorage.userEditsTwit = userVersionTwit;
+    sessionStorage.userEditsImg = userVersionImg;
+    
+    location.reload();
+
+    }
+
+    function checkEdits() {
+
+      console.log("loading changes---");
+     
+    //find out if the user has previously saved edits
+    if(sessionStorage.userEditsName!=null)
+      document.getElementById("card-name").innerHTML=sessionStorage.userEditsName;
+    
+    if(sessionStorage.userEditsDesig!=null)
+      document.getElementById("card-designation").innerHTML=sessionStorage.userEditsDesig;
+    
+    if(sessionStorage.userEditsBio!=null)
+      document.getElementById("card-bio").innerHTML=sessionStorage.userEditsBio;
+
+      if(sessionStorage.userEditsWeb != null){
+        
+    
+      if(sessionStorage.userEditsWeb!=""){
+            document.getElementById("web_val").innerHTML=sessionStorage.userEditsWeb;
+            document.getElementById("web_val").href = "https://"+sessionStorage.userEditsWeb;
+            console.log("web:");
+            console.log("https://"+sessionStorage.userEditsWeb);
+          }
+      
+          if(sessionStorage.userEditsGit!=""){
+            document.getElementById("git_val").innerHTML=sessionStorage.userEditsGit;
+            document.getElementById("git_val").href = "https://github.com/"+sessionStorage.userEditsGit;
+            console.log("git:");
+            console.log("https://"+sessionStorage.userEditsGit);
+          }
+          
+          if(sessionStorage.userEditsTwit!=""){
+            document.getElementById("twit_val").innerHTML=sessionStorage.userEditsTwit;
+            document.getElementById("twit_val").href = "https://twitter.com/"+sessionStorage.userEditsTwit;
+            console.log("twit:");
+            console.log("https://"+sessionStorage.userEditsTwit);
+          }
+
+        if(sessionStorage.userEditsImg != ""){
+          document.getElementById("card-img").style.backgroundImage = "url(" + sessionStorage.userEditsImg + ")"
+        }
+      }
+
+    }
+
+    function saveImage()
+{
+
+  window.scrollTo(0, 0);
+    let screenshot = document.querySelector('#capture');
+
+    html2canvas(screenshot, {useCORS: true}).then((canvas) => {
+        let imgData = canvas.toDataURL('image/png');
+        downloadURI(imgData, "My_Card");
+    });
+}
+
+function downloadURI(uri, name) {
+    var link = document.createElement("a");
+
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();   
+    //after creating link you should delete dynamic link
+    //clearDynamicLink(link); 
+}
+
+    </script>
+  </head>
+  <body onload="checkEdits()">
+    <div id="capture">
+    
+    <div class="main-card" id="capture2">
+      <div class="card-content">
+
+        <div id="card-img"></div>
+        <div id="card-name" onkeypress="return (this.innerText.length <= 16)" contenteditable="true">Vidhi Bagadia</div>
+        <div id="card-designation" onkeypress="return (this.innerText.length <= 20)" contenteditable="true">Student | Engineer</div>
+        <div id="card-bio" onkeypress="return (this.innerText.length <= 160)" contenteditable="true">Fresh out of the college-oven, I am interested in <span>Web Development</span>,
+        <span>Machine Learning</span> and everything <span>software</span>. Hit me up on the links below!
+        </div>
+        <div id="card-website"> <a id="web_val" href="https://vidhibagadia.me" target="_blank">vidhibagadia.me</a></div>
+        <div class="card-logos">
+            <i class="fa fa-github"></i> <a id="git_val" href="https://github.com/vee-dhee" target="_blank">vee-dhee</a>
+            <i class="fa fa-twitter"></i><a id="twit_val" href="https://twitter.com/veedhee_" target="_blank">veedhee_</a>          
+        </div>   
+      </div>
+    </div>
+  </div>
+
+    <div class="buttons">
+        INSTRUCTIONS:<br/>
+        1. Click the text on the card to edit information<br/>
+        2. Fill out the links below to change links<br/>
+        3. Save Changes<br/><br/>
+        <div>
+          Image (link): <input id="img" type="url"><br/>
+          Website (eg. vidhibagadia.me): <input id="web" type="text" maxlength="20"><br/>
+          Github User (eg. vee-dhee): <input id="git" type="text" maxlength="10"><br/>
+          Twitter User (eg. veedhee_): <input id="twit" type="text" maxlength="10"><br/>
+        </div>
+<br/>
+    <input type="button" class="btn" value="Save Changes" onclick="saveEdits()"/>
+    <input type="button" class="btn" value="Download Card Image" onclick="saveImage()" />
+    </div>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
